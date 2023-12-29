@@ -6,7 +6,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Đăng nhập</title>
+    <title>Đặt lại mật khẩu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -50,49 +50,21 @@
                         <div class="card mt-4 card-bg-fill">
 
                             <div class="card-body p-4">
-                                <div class="text-center mt-2">
-                                    <h5 class="text-primary">Chào mừng trở lại !</h5>
-                                    <p class="text-muted">Đăng nhập để tiếp tục đến Velzon.</p>
-                                </div>
                                 <div class="p-2 mt-4">
                                     @include('admin._message')
-                                    <form action="{{route('admin.auth.login')}}" method="POST">
+                                    <form action="" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Email</label>
-                                            <input type="email" class="form-control" name="email" id="email" placeholder="Nhập email">
+                                            <label for="password" class="form-label">Mật khẩu mới</label>
+                                            <input type="password" class="form-control" name="password" id="password" placeholder="Nhập mật khẩu">
                                         </div>
-
                                         <div class="mb-3">
-                                            <div class="float-end">
-                                                <a href="{{route('admin.auth.forgot-password')}}" class="text-muted">Quên mật khẩu?</a>
-                                            </div>
-                                            <label class="form-label" for="password-input">Mật khẩu</label>
-                                            <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" class="form-control pe-5 password-input" name="password" placeholder="Nhập mật khẩu" id="password-input">
-                                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="remember" type="checkbox" value="" id="auth-remember-check">
-                                            <label class="form-check-label" for="auth-remember-check">Lưu thông tin</label>
+                                            <label for="password" class="form-label">Xác nhận mật khẩu</label>
+                                            <input type="password" class="form-control" name="cpassword" id="password" placeholder="Nhập lại mật khẩu">
                                         </div>
 
                                         <div class="mt-4">
-                                            <button class="btn btn-primary w-100" type="submit">Đăng nhập</button>
-                                        </div>
-
-                                        <div class="mt-4 text-center">
-                                            <div class="signin-other-title">
-                                                <h5 class="fs-13 mb-4 title">Đăng nhập với</h5>
-                                            </div>
-                                            <div>
-                                                <button type="button" class="btn btn-primary btn-icon waves-effect waves-light"><i class="ri-facebook-fill fs-16"></i></button>
-                                                <button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>
-                                                <button type="button" class="btn btn-dark btn-icon waves-effect waves-light"><i class="ri-github-fill fs-16"></i></button>
-                                                <button type="button" class="btn btn-info btn-icon waves-effect waves-light"><i class="ri-twitter-fill fs-16"></i></button>
-                                            </div>
+                                            <button class="btn btn-primary w-100" type="submit">Đặt lại mật khẩu</button>
                                         </div>
                                     </form>
                                 </div>
@@ -102,7 +74,7 @@
                         <!-- end card -->
 
                         <div class="mt-4 text-center">
-                            <p class="mb-0">Bạn chưa có tài khoản ? <a href="auth-signup-basic.html" class="fw-semibold text-primary text-decoration-underline"> Đăng kí </a> </p>
+                            <p class="mb-0"><a href="auth-signup-basic.html" class="fw-semibold text-primary text-decoration-underline"> Đăng nhập </a> </p>
                         </div>
 
                     </div>

@@ -19,6 +19,10 @@ Route::get('/', [AuthController::class, 'login']);
 
 Route::post('/login', [AuthController::class, 'AuthLogin'])->name('admin.auth.login');
 Route::get('/logout', [AuthController::class, 'AuthLogout'])->name('admin.auth.logout');
+Route::get('/forgot-password', [AuthController::class, 'ForgotPassWord'])->name('admin.auth.forgot-password');
+Route::post('/forgot-password', [AuthController::class, 'ForgotPasswordConfirm'])->name('admin.auth.forgot-password-confirm');
+Route::get('/reset/{oken}', [AuthController::class, 'ResetPassword'])->name('admin.auth.reset-password');
+Route::post('/reset/{token}', [AuthController::class, 'ResetPasswordConfirm'])->name('admin.auth.reset-password-confirm');
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard-admin');
