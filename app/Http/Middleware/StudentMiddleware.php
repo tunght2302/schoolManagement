@@ -21,6 +21,6 @@ class StudentMiddleware
         }
 
         Auth::logout();
-        return redirect(url(''));
+        return redirect(route('admin.auth.login'));
     }
 }

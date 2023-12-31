@@ -4,13 +4,15 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -42,14 +44,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
+    static public function getAdmin()
+    {
+        return self::select('user.*')
+            ->where('role_id', '=', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+    }
     static public function getEmailSingle($email)
     {
-        return User::where('email','=', $email)->first();
+        return User::where('email', '=', $email)->first();
     }
 
     static public function getTokenSingle($remember_token)
     {
-        return User::where('remember_token','=', $remember_token)->first();
+        return User::where('remember_token', '=', $remember_token)->first();
+    }
+
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, 'roles', 'user_id', 'role_id');
     }
 }

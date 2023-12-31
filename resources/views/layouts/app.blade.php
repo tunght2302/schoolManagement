@@ -25,7 +25,16 @@
     <link href="{{ asset('css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Toastr -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-
+     alpha/css/bootstrap.css" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css"
+     href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
 
 <body>
@@ -93,14 +102,12 @@
     <script src="{{ asset('js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
     <script src="{{ asset('js/plugins.js') }}"></script>
 
-    <!-- apexcharts -->
     <script src="{{ asset('libs/apexcharts/apexcharts.min.js') }}"></script>
-
-    <!-- Dashboard init -->
     <script src="{{ asset('js/pages/dashboard-crm.init.js') }}"></script>
-
-    <!-- App js -->
+    <script src="{{ asset('libs/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{ asset('js/pages/sweetalerts.init.js')}}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{asset('js/pages/password-addon.init.js')}}"></script>
 </body>
 
 

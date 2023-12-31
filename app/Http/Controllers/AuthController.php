@@ -50,7 +50,7 @@ class AuthController extends Controller
     public function AuthLogout()
     {
         Auth::logout();
-        return redirect(url(''))->with('success', 'Đăng xuất thành công');
+        return redirect(route('admin.auth.login'))->with('success', 'Đăng xuất thành công');
     }
 
     public function ForgotPassword()
@@ -77,7 +77,7 @@ class AuthController extends Controller
             $user->remember_token = Str::random(30);
             $user->save();
 
-            return redirect(url(''))->with('success', 'Đặt lại mật khẩu thành công');
+            return redirect(route('admin.auth.login'))->with('success', 'Đặt lại mật khẩu thành công');
         } else {
             return redirect()->back()->with('error', 'Mật khẩu không trùng khớp');
         }

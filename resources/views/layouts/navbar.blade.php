@@ -33,12 +33,12 @@
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                 @if (Auth::user()->role_id == 1)
                     <li class="nav-item">
-                        <a class="nav-link menu-link @if(Request::segment(2) == 'dashboard') active @endif " href="{{route('dashboard-admin')}}">
+                        <a class="nav-link menu-link @if(Request::segment(2) == 'dashboard') active @endif " href="{{route('admin.dashboard')}}">
                             <i class="ri-dashboard-2-line"></i> <span data-key="t-widgets">Dashboards</span>
                         </a>
                     </li> <!-- end Dashboard Menu -->
                     <li class="nav-item">
-                        <a class="nav-link menu-link @if(Request::segment(2) == 'admin-management') active @endif " href="{{ route('admin-management') }}">
+                        <a class="nav-link menu-link @if(Request::segment(3) == 'index') active @endif " href="{{ route('admin.adminManagement.index') }}">
                             <i class="ri-account-circle-line"></i> <span data-key="t-widgets">Quản lý Admin</span>
                         </a>
                     </li>

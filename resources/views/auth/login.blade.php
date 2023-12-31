@@ -55,8 +55,8 @@
                                     <p class="text-muted">Đăng nhập để tiếp tục đến Velzon.</p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    @include('admin._message')
-                                    <form action="{{route('admin.auth.login')}}" method="POST">
+                                    @include('admin._message_error')
+                                    <form action="{{route('admin.auth.confirmlogin')}}" method="POST">
                                         @csrf
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>

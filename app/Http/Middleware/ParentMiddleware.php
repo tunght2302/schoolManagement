@@ -21,6 +21,6 @@ class ParentMiddleware
         }
 
         Auth::logout();
-        return redirect(url(''));
+        return redirect(route('admin.auth.login'));
     }
 }

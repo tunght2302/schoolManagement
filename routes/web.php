@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashBoardController;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AuthController::class, 'login']);
+Route::get('/', [AuthController::class, 'login'])->name('admin.auth.login');
 
-Route::post('/login', [AuthController::class, 'AuthLogin'])->name('admin.auth.login');
+Route::post('/login', [AuthController::class, 'AuthLogin'])->name('admin.auth.confirmlogin');
 Route::get('/logout', [AuthController::class, 'AuthLogout'])->name('admin.auth.logout');
 Route::get('/forgot-password', [AuthController::class, 'ForgotPassWord'])->name('admin.auth.forgot-password');
 Route::post('/forgot-password', [AuthController::class, 'ForgotPasswordConfirm'])->name('admin.auth.forgot-password-confirm');
@@ -25,11 +26,14 @@ Route::get('/reset/{oken}', [AuthController::class, 'ResetPassword'])->name('adm
 Route::post('/reset/{token}', [AuthController::class, 'ResetPasswordConfirm'])->name('admin.auth.reset-password-confirm');
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard-admin');
-    // Route::get('/admin-management', [DashBoardController::class, 'index'])->name('admin-management');
-    Route::get('/admin-management', function () {
-        return view('admin.adminManagement.list');
-    })->name('admin-management');
+    Route::get('/dashboard', [DashBoardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.adminManagement.index');
+    Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.adminManagement.create');
+    Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.adminManagement.store');
+    Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.adminManagement.edit');
+    Route::patch('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.adminManagement.update');
+    Route::get('/admin/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.adminManagement.destroy');
+    Route::get('/admin/search', [AdminController::class, 'searchAdmin'])->name('admin.adminManagement.search');
 });
 
 Route::prefix('teacher')->middleware(['auth', 'teacher'])->group(function () {
