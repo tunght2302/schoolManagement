@@ -42,6 +42,11 @@
                             <i class="ri-account-circle-line"></i> <span data-key="t-widgets">Quản lý Admin</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link @if(Request::segment(3) == 'index') active @endif " href="{{ route('admin.schoolClassManagement.index') }}">
+                            <i class="bx bx-home"></i> <span data-key="t-widgets">Quản lý Lớp học</span>
+                        </a>
+                    </li>
                 @endif
                 @if (Auth::user()->role_id == 2)
                     <li class="nav-item">

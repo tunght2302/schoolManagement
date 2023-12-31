@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\SchoolClassController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,14 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::patch('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.adminManagement.update');
     Route::get('/admin/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.adminManagement.destroy');
     Route::get('/admin/search', [AdminController::class, 'searchAdmin'])->name('admin.adminManagement.search');
+    //School Class
+    Route::get('/school-class/index', [SchoolClassController::class, 'index'])->name('admin.schoolClassManagement.index');
+    Route::get('/school-class/create', [SchoolClassController::class, 'create'])->name('admin.schoolClassManagement.create');
+    Route::post('/school-class/store', [SchoolClassController::class, 'store'])->name('admin.schoolClassManagement.store');
+    Route::get('/school-class/edit/{id}', [SchoolClassController::class, 'edit'])->name('admin.schoolClassManagement.edit');
+    Route::patch('/school-class/update/{id}', [SchoolClassController::class, 'update'])->name('admin.schoolClassManagement.update');
+    Route::get('/school-class/destroy/{id}', [SchoolClassController::class, 'destroy'])->name('admin.schoolClassManagement.destroy');
+    Route::get('/school-class/search', [SchoolClassController::class, 'searchSchoolClass'])->name('admin.schoolClassManagement.search');
 });
 
 Route::prefix('teacher')->middleware(['auth', 'teacher'])->group(function () {

@@ -23,27 +23,27 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         switch ($this->method()) {
-        case 'POST':
-            return [
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:8',
-            ];
-        case 'PATCH':
-            return [
-                'name' => 'required|string|max:255',
-                'email' => [
-                    'required',
-                    'string',
-                    'email',
-                    'max:255',
-                    Rule::unique('users', 'email')->ignore($this->id), // Ignore the current user
-                ],
-                'password' => 'required|string|min:8',
-            ];
-        default:
-            return [];
-    }
+            case 'POST':
+                return [
+                    'name' => 'required|string|max:255',
+                    'email' => 'required|string|email|max:255|unique:users',
+                    'password' => 'required|string|min:8',
+                ];
+            case 'PATCH':
+                return [
+                    'name' => 'required|string|max:255',
+                    'email' => [
+                        'required',
+                        'string',
+                        'email',
+                        'max:255',
+                        Rule::unique('users', 'email')->ignore($this->id), // Ignore the current user
+                    ],
+                    'password' => 'required|string|min:8',
+                ];
+            default:
+                return [];
+        }
     }
 
     public function messages()
