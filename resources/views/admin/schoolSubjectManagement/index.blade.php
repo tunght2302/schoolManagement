@@ -50,13 +50,15 @@
                                                     <div class="ms-2">
                                                         <input type="text" class="form-control search"
                                                             placeholder="Tìm kiếm..." name="searchName"
-                                                            value="{{ Request::get('search') }}">
+                                                            value="{{ Request::get('searchName') }}">
                                                     </div>
-                                                    <div class="col-lg-sm">
+                                                    <div class="col-lg-sm mx-2">
                                                         <select class="form-select" name="searchSubjectType" aria-label=".form-select-sm example">
-                                                            <option selected="">Lọc loại môn học</option>
+                                                            <option value="0" {{ Request::get('searchSubjectType') == 0 ? 'selected' : '' }}>Lọc loại môn học</option>
                                                             @foreach ($getAllSchoolSubjectTye as $type)
-                                                                <option value="{{$type->id}}">{{$type->name}}</option>
+                                                                <option value="{{ $type->id }}" {{ Request::get('searchSubjectType') == $type->id ? 'selected' : '' }}>
+                                                                    {{ $type->name }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                     </div>

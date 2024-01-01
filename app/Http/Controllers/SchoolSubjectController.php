@@ -108,8 +108,23 @@ class SchoolSubjectController extends Controller
 
     public function searchSchoolSubject(SchoolSubjectRequest $request)
     {
-        $searchName = $request->searchName;
-        $getAllSchoolSubject = $this->schoolSubjectmodel::where('name', 'LIKE', '%' . $searchName . '%')->paginate(10);
+        // Lấy thông tin từ form search
+        $searchName = $request->get('searchName');
+        $searchSubjectType = $request->get('searchSubjectType');
+
+        // Lọc theo tên môn học nếu có
+        $schoolSubjects = SchoolSubject::query();
+        if ($searchName) {
+            $schoolSubjects->where('name', 'like', '%' . $searchName . '%');
+        }
+
+        // Lọc theo loại môn học nếu có
+        if ($searchSubjectType && $searchSubjectType != 0) {
+            $schoolSubjects->where('school_subject_type_id',$searchSubjectType);
+        }
+
+        // Lấy kết quả đã lọc
+        $getAllSchoolSubject = $schoolSubjects->paginate(10);
         $getAllSchoolSubjectTye = $this->schoolSubjectTypemodel->select('id', 'name')->get();
         return view('admin.schoolSubjectManagement.index', [
             'getAllSchoolSubject' => $getAllSchoolSubject,

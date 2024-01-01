@@ -28,7 +28,7 @@ Route::post('/forgot-password', [AuthController::class, 'ForgotPasswordConfirm']
 Route::get('/reset/{oken}', [AuthController::class, 'ResetPassword'])->name('admin.auth.reset-password');
 Route::post('/reset/{token}', [AuthController::class, 'ResetPasswordConfirm'])->name('admin.auth.reset-password-confirm');
 
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::get('/dashboard', [DashBoardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.adminManagement.index');
     Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.adminManagement.create');
