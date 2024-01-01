@@ -30,7 +30,7 @@
                         <span></span>
                     </span>
                 </button>
-                @include('admin._message_success')
+                @include('notifications._message_success')
                 <!-- App Search-->
                 <form class="app-search d-none d-md-block">
                     <div class="position-relative">

@@ -30,22 +30,42 @@
             <div id="two-column-menu">
             </div>
             <ul class="navbar-nav" id="navbar-nav">
-                <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                <li class="menu-title"><span data-key="t-menu">Người dùng</span></li>
                 @if (Auth::user()->role_id == 1)
                     <li class="nav-item">
                         <a class="nav-link menu-link @if(Request::segment(2) == 'dashboard') active @endif " href="{{route('admin.dashboard')}}">
                             <i class="ri-dashboard-2-line"></i> <span data-key="t-widgets">Dashboards</span>
                         </a>
                     </li> <!-- end Dashboard Menu -->
+                   <li class="nav-item">
+                        <a class="nav-link menu-link {{ request()->routeIs('admin.adminManagement.*') ? 'active' : '' }}" href="{{ route('admin.adminManagement.index') }}">
+                            <i class="ri-account-circle-line"></i> <span data-key="t-widgets">Quản lý admin</span>
+                        </a>
+                    </li>
+                    <li class="menu-title"><span data-key="t-menu">Giáo dục</span></li>
                     <li class="nav-item">
-                        <a class="nav-link menu-link @if(Request::segment(3) == 'index') active @endif " href="{{ route('admin.adminManagement.index') }}">
-                            <i class="ri-account-circle-line"></i> <span data-key="t-widgets">Quản lý Admin</span>
+                        <a class="nav-link menu-link {{ request()->routeIs('admin.schoolClassManagement.*') ? 'active' : '' }}" href="{{ route('admin.schoolClassManagement.index') }}">
+                            <i class="bx bx-home"></i> <span data-key="t-widgets">Quản lý Lớp học</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link menu-link @if(Request::segment(3) == 'index') active @endif " href="{{ route('admin.schoolClassManagement.index') }}">
-                            <i class="bx bx-home"></i> <span data-key="t-widgets">Quản lý Lớp học</span>
+                        <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                            <i class="bx bx-book-bookmark"></i> <span data-key="t-dashboards">Quản lý học liệu</span>
                         </a>
+                        <div class="collapse menu-dropdown" id="sidebarDashboards">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link menu-link {{ request()->routeIs('admin.schoolSubjectTypeManagement.*') ? 'active' : '' }}" href="{{ route('admin.schoolSubjectTypeManagement.index') }}">
+                                        <i class="bx bx-bookmark-plus"></i> <span data-key="t-widgets">Quản lý loại môn học</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link menu-link {{ request()->routeIs('admin.schoolSubjectManagement.*') ? 'active' : '' }}" href="{{ route('admin.schoolSubjectManagement.index') }}">
+                                        <i class="bx bx-book-reader"></i> <span data-key="t-widgets">Quản lý môn học</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 @endif
                 @if (Auth::user()->role_id == 2)

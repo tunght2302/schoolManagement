@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('school_subjects', function (Blueprint $table) {
+        Schema::create('school_subject_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->integer('school_subject_type_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('school_subjects');
+        Schema::dropIfExists('school_subject_types');
     }
 };

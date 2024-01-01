@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Cập nhật Lớp học
+    Thêm mới môn học
 @endsection
 @section('content')
     <div class="main-content">
@@ -12,15 +12,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-transparent">
-                            <h4 class="mb-sm-0">Cập nhật Lớp học</h4>
+                            <h4 class="mb-sm-0">Thêm mới môn học</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Quản lý Admin</a></li>
-                                    <li class="breadcrumb-item active">Cập nhật Lớp học</li>
+                                    <li class="breadcrumb-item active">Thêm mới môn học</li>
                                 </ol>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -30,31 +29,34 @@
                     <div class="card mt-2">
                         <div class="card-body">
                             <div class="live-preview">
-                                <form action="{{ route('admin.schoolClassManagement.update', $oneSchoolClass->id) }}"
-                                    method="POST" class="row g-3">
+                                <form action="{{ route('admin.schoolSubjectManagement.store') }}" method="POST"
+                                    class="row g-3">
                                     @csrf
-                                    @method('PATCH')
                                     <div class="col-md-12">
-                                        <label for="fullnameInput" class="form-label">Tên lớp</label>
+                                        <label for="fullnameInput" class="form-label">Tên môn Học</label>
                                         <input type="text" name="name" class="form-control" id="fullnameInput"
-                                            value="{{ old('name', $oneSchoolClass->name) }}" placeholder="Nhập họ tên">
+                                            value="{{ old('name') }}" placeholder="Nhập tên môn học">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="inputState" class="form-label">Loại môn học</label>
+                                        <select class="form-select mb-3" name="school_subject_type_id">
+                                            <option selected value="0">Chọn loại môn học</option>
+                                            @foreach ($getAllSchoolSubjectTye as $type)
+                                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="inputState" class="form-label">Trạng thái</label>
                                         <select class="form-select mb-3" name="status">
-                                            <option selected value="0">Trạng thái</option>
-                                            <option value="1"
-                                                {{ $oneSchoolClass->status === 'active' ? 'selected' : '' }}>Active
-                                            </option>
-                                            <option value="2"
-                                                {{ $oneSchoolClass->status === 'inactive' ? 'selected' : '' }}>Inactive
-                                            </option>
+                                            <option selected value="0">Chọn trạng thái</option>
+                                            <option value="1">Active</option>
+                                            <option value="2">Inactive</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <div class="text-end">
-                                            <a href="{{route('admin.schoolClassManagement.index')}}" class="btn btn-success">Quay lại</a>
-                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                            <button type="submit" class="btn btn-primary">Thêm mới</button>
                                         </div>
                                     </div>
                                 </form>

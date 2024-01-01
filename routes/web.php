@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\SchoolClassController;
+use App\Http\Controllers\SchoolSubjectController;
+use App\Http\Controllers\SchoolSubjectTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +45,22 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::patch('/school-class/update/{id}', [SchoolClassController::class, 'update'])->name('admin.schoolClassManagement.update');
     Route::get('/school-class/destroy/{id}', [SchoolClassController::class, 'destroy'])->name('admin.schoolClassManagement.destroy');
     Route::get('/school-class/search', [SchoolClassController::class, 'searchSchoolClass'])->name('admin.schoolClassManagement.search');
+    //School Subject Type
+    Route::get('/school-subject-type/index', [SchoolSubjectTypeController::class, 'index'])->name('admin.schoolSubjectTypeManagement.index');
+    Route::get('/school-subject-type/create', [SchoolSubjectTypeController::class, 'create'])->name('admin.schoolSubjectTypeManagement.create');
+    Route::post('/school-subject-type/store', [SchoolSubjectTypeController::class, 'store'])->name('admin.schoolSubjectTypeManagement.store');
+    Route::get('/school-subject-type/edit/{id}', [SchoolSubjectTypeController::class, 'edit'])->name('admin.schoolSubjectTypeManagement.edit');
+    Route::patch('/school-subject-type/update/{id}', [SchoolSubjectTypeController::class, 'update'])->name('admin.schoolSubjectTypeManagement.update');
+    Route::get('/school-subject-type/destroy/{id}', [SchoolSubjectTypeController::class, 'destroy'])->name('admin.schoolSubjectTypeManagement.destroy');
+    Route::get('/school-subject-type/search', [SchoolSubjectTypeController::class, 'searchSchoolSubjectType'])->name('admin.schoolSubjectTypeManagement.search');
+    //School Subject
+    Route::get('/school-subject/index', [SchoolSubjectController::class, 'index'])->name('admin.schoolSubjectManagement.index');
+    Route::get('/school-subject/create', [SchoolSubjectController::class, 'create'])->name('admin.schoolSubjectManagement.create');
+    Route::post('/school-subject/store', [SchoolSubjectController::class, 'store'])->name('admin.schoolSubjectManagement.store');
+    Route::get('/school-subject/edit/{id}', [SchoolSubjectController::class, 'edit'])->name('admin.schoolSubjectManagement.edit');
+    Route::patch('/school-subject/update/{id}', [SchoolSubjectController::class, 'update'])->name('admin.schoolSubjectManagement.update');
+    Route::get('/school-subject/destroy/{id}', [SchoolSubjectController::class, 'destroy'])->name('admin.schoolSubjectManagement.destroy');
+    Route::get('/school-subject/search', [SchoolSubjectController::class, 'searchSchoolSubject'])->name('admin.schoolSubjectManagement.search');
 });
 
 Route::prefix('teacher')->middleware(['auth', 'teacher'])->group(function () {

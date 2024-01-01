@@ -30,30 +30,39 @@
                     <div class="card mt-2">
                         <div class="card-body">
                             <div class="live-preview">
-                                <form action="{{ route('admin.schoolClassManagement.update', $oneSchoolClass->id) }}"
+                                <form action="{{ route('admin.schoolSubjectManagement.update', $oneSchoolSubject->id) }}"
                                     method="POST" class="row g-3">
                                     @csrf
                                     @method('PATCH')
                                     <div class="col-md-12">
                                         <label for="fullnameInput" class="form-label">Tên lớp</label>
                                         <input type="text" name="name" class="form-control" id="fullnameInput"
-                                            value="{{ old('name', $oneSchoolClass->name) }}" placeholder="Nhập họ tên">
+                                            value="{{ old('name', $oneSchoolSubject->name) }}" placeholder="Nhập họ tên">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="inputState" class="form-label">Loại môn học</label>
+                                        <select class="form-select mb-3" name="school_subject_type_id">
+                                            <option selected value="0">Chọn loại môn học</option>
+                                            @foreach ($getAllSchoolSubjectTye as $type)
+                                                <option {{$type->id == $oneSchoolSubject->school_subject_type_id ? 'selected' : ''}} value="{{$type->id}}">{{$type->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="inputState" class="form-label">Trạng thái</label>
                                         <select class="form-select mb-3" name="status">
-                                            <option selected value="0">Trạng thái</option>
+                                            <option selected value="0">Chọn trạng thái</option>
                                             <option value="1"
-                                                {{ $oneSchoolClass->status === 'active' ? 'selected' : '' }}>Active
+                                                {{ $oneSchoolSubject->status === 'active' ? 'selected' : '' }}>Active
                                             </option>
                                             <option value="2"
-                                                {{ $oneSchoolClass->status === 'inactive' ? 'selected' : '' }}>Inactive
+                                                {{ $oneSchoolSubject->status === 'inactive' ? 'selected' : '' }}>Inactive
                                             </option>
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <div class="text-end">
-                                            <a href="{{route('admin.schoolClassManagement.index')}}" class="btn btn-success">Quay lại</a>
+                                            <a href="{{route('admin.schoolSubjectManagement.index')}}" class="btn btn-success">Quay lại</a>
                                             <button type="submit" class="btn btn-primary">Cập nhật</button>
                                         </div>
                                     </div>

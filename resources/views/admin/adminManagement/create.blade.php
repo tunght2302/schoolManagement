@@ -26,7 +26,7 @@
                 </div>
                 <!-- end page title -->
                 <div class="col-xxl-12">
-                    @include('admin._message_error')
+                    @include('notifications._message_error')
                     <div class="card mt-2">
                         <div class="card-body">
                             <div class="live-preview">
@@ -35,18 +35,19 @@
                                     <div class="col-md-6">
                                         <label for="fullnameInput" class="form-label">Họ Tên</label>
                                         <input type="text" name="name" class="form-control" id="fullnameInput"
-                                          value="{{old('name')}}"  placeholder="Nhập họ tên">
+                                            value="{{ old('name') }}" placeholder="Nhập họ tên">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputEmail4" class="form-label">Email</label>
                                         <input type="email" name="email" class="form-control" id="inputEmail4"
-                                          value="{{old('email')}}"  placeholder="Nhập email">
+                                            value="{{ old('email') }}" placeholder="Nhập email">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label" for="password-input">Mật khẩu</label>
                                         <div class="position-relative auth-pass-inputgroup mb-3">
                                             <input type="password" class="form-control pe-5 password-input" name="password"
-                                              value="{{old('password')}}"  placeholder="Nhập mật khẩu" id="password-input">
+                                                value="{{ old('password') }}" placeholder="Nhập mật khẩu"
+                                                id="password-input">
                                             <button
                                                 class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                                                 type="button" id="password-addon"><i
