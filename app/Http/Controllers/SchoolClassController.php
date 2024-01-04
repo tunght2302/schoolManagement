@@ -19,7 +19,8 @@ class SchoolClassController extends Controller
     }
     public function index()
     {
-        $getAllSchoolClass = $this->model->latest()->paginate(10);
+        $getAllSchoolClass = $this->model->orderByRaw("SUBSTRING(school_classes.name, 1, 1) ASC, CAST(SUBSTRING(school_classes.name, 2) AS SIGNED) ASC")
+            ->paginate(10);
         return view('admin.schoolClassManagement.index', ['getAllSchoolClass' => $getAllSchoolClass]);
     }
 

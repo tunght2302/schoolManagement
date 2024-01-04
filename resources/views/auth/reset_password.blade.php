@@ -51,7 +51,7 @@
 
                             <div class="card-body p-4">
                                 <div class="p-2 mt-4">
-                                    @include('admin._message')
+                                    @include('notifications._message_error')
                                     <form action="" method="POST">
                                         @csrf
                                         <div class="mb-3">

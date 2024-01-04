@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClassSubjectController;
+use App\Http\Controllers\ClassSubjectsController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\SchoolSubjectController;
@@ -29,6 +31,7 @@ Route::get('/reset/{oken}', [AuthController::class, 'ResetPassword'])->name('adm
 Route::post('/reset/{token}', [AuthController::class, 'ResetPasswordConfirm'])->name('admin.auth.reset-password-confirm');
 
 Route::prefix('admin')->middleware(['admin'])->group(function () {
+    //Admin
     Route::get('/dashboard', [DashBoardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.adminManagement.index');
     Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.adminManagement.create');
@@ -61,16 +64,26 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::patch('/school-subject/update/{id}', [SchoolSubjectController::class, 'update'])->name('admin.schoolSubjectManagement.update');
     Route::get('/school-subject/destroy/{id}', [SchoolSubjectController::class, 'destroy'])->name('admin.schoolSubjectManagement.destroy');
     Route::get('/school-subject/search', [SchoolSubjectController::class, 'searchSchoolSubject'])->name('admin.schoolSubjectManagement.search');
+    //Class Subject
+    Route::get('/class-subject/index', [ClassSubjectController::class, 'index'])->name('admin.classSubjectManagement.index');
+    Route::get('/class-subject/create', [ClassSubjectController::class, 'create'])->name('admin.classSubjectManagement.create');
+    Route::post('/class-subject/store', [ClassSubjectController::class, 'store'])->name('admin.classSubjectManagement.store');
+    Route::get('/class-subject/edit-single/{id}', [ClassSubjectController::class, 'edit'])->name('admin.classSubjectManagement.edit');
+    Route::patch('/class-subject/update-single/{id}', [ClassSubjectController::class, 'update'])->name('admin.classSubjectManagement.update');
+    Route::get('/class-subject/edit-all/{id}', [ClassSubjectController::class, 'edits'])->name('admin.classSubjectManagement.edits');
+    Route::patch('/class-subject/update-all/{id}', [ClassSubjectController::class, 'updates'])->name('admin.classSubjectManagement.updates');
+    Route::get('/class-subject/destroy/{id}', [ClassSubjectController::class, 'destroy'])->name('admin.classSubjectManagement.destroy');
+    Route::get('/class-subject/search', [ClassSubjectController::class, 'searchClassSubject'])->name('admin.classSubjectManagement.search');
 });
 
-Route::prefix('teacher')->middleware(['auth', 'teacher'])->group(function () {
+Route::prefix('teacher')->middleware(['teacher'])->group(function () {
     Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard-teacher');
 });
 
-Route::prefix('student')->middleware(['auth', 'student'])->group(function () {
+Route::prefix('student')->middleware(['student'])->group(function () {
     Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard-student');
 });
 
-Route::prefix('parent')->middleware(['auth', 'parent'])->group(function () {
+Route::prefix('parent')->middleware(['parent'])->group(function () {
     Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard-parent');
 });

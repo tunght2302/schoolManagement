@@ -18,4 +18,14 @@ class SchoolClass extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function school_subjects()
+    {
+        return $this->belongsToMany(SchoolSubject::class, 'class_subjects');
+    }
+
+    public function classSubjects()
+    {
+        return $this->hasMany(ClassSubject::class, 'school_class_id', 'id');
+    }
 }

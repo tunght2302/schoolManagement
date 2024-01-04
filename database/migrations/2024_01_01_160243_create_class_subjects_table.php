@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('class_subjects', function (Blueprint $table) {
             $table->id();
+            $table->integer('school_class_id');
+            $table->integer('school_subject_id');
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->integer('created_by')->default(1);
             $table->timestamps();
         });
     }
