@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Cập nhật phân công môn học
+    Phân công môn học
 @endsection
 @section('content')
     <div class="main-content">
@@ -16,7 +16,7 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Phân công môn học</a></li>
+                                    <li class="breadcrumb-item"><a href="">Phân công môn học</a></li>
                                     <li class="breadcrumb-item active">Cập nhật phân công môn học</li>
                                 </ol>
                             </div>

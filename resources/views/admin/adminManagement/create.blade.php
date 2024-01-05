@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Thêm mới Admin
+    Admin
 @endsection
 @section('content')
     <div class="main-content">
@@ -16,7 +16,7 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Quản lý Admin</a></li>
+                                    <li class="breadcrumb-item"><a href="">Admin</a></li>
                                     <li class="breadcrumb-item active">Thêm mới Admin</li>
                                 </ol>
                             </div>

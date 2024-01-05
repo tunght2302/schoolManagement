@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Danh sách Lớp học
+    Môn học
 @endsection
 @section('content')
     <div class="main-content">
@@ -12,12 +12,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-transparent">
-                            <h4 class="mb-sm-0">Danh sách Lớp học</h4>
+                            <h4 class="mb-sm-0">Danh sách môn học</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Quản lý Admin</a></li>
-                                    <li class="breadcrumb-item active">Danh sách Lớp học</li>
+                                    <li class="breadcrumb-item"><a href="">Môn học</a></li>
+                                    <li class="breadcrumb-item active">Danh sách môn học</li>
                                 </ol>
                             </div>
 

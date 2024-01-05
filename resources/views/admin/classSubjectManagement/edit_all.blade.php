@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Cập nhật phân công môn học
+    Phân công môn học
 @endsection
 @section('content')
     <div class="main-content">

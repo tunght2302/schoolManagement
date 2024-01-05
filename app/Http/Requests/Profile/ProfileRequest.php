@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Profile;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class UserRequest extends FormRequest
+class ProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +24,6 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         switch ($this->method()) {
-            case 'POST':
-                return [
-                    'name' => 'required|string|max:255',
-                    'email' => 'required|string|email|max:255|unique:users',
-                    'password' => 'required|string|min:8',
-                    'phone'
-                ];
             case 'PATCH':
                 return [
                     'name' => 'required|string|max:255',
@@ -38,9 +32,11 @@ class UserRequest extends FormRequest
                         'string',
                         'email',
                         'max:255',
-                        Rule::unique('users', 'email')->ignore($this->id), // Ignore the current user
+                        Rule::unique('users', 'email')->ignore(Auth::user()->id),
                     ],
-                    'password' => 'required|string|min:8',
+                    'password' => 'string|min:8',
+                    'address' => 'nullable|string|max:255',
+                    'phone' => ['nullable','regex:/^(\+84|0)[0-9]{9,10}$/'], // Quy tắc kiểm tra cho số điện thoại
                 ];
             default:
                 return [];
@@ -64,6 +60,10 @@ class UserRequest extends FormRequest
             'password.string' => 'Mật khẩu phải là chuỗi ký tự.',
             'password.min' => 'Mật khẩu phải chứa ít nhất :min ký tự.',
 
+            'address.string' => 'Địa chỉ phải là chuỗi ký tự.',
+            'address.max' => 'Địa chỉ không được vượt quá :max ký tự.',
+
+            'phone.regex' => 'Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại Việt Nam đúng định dạng.',
         ];
     }
 }

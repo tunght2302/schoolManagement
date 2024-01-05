@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\ClassSubjectsController;
 use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\SchoolSubjectController;
 use App\Http\Controllers\SchoolSubjectTypeController;
@@ -33,6 +34,12 @@ Route::post('/reset/{token}', [AuthController::class, 'ResetPasswordConfirm'])->
 Route::prefix('admin')->middleware(['admin'])->group(function () {
     //Admin
     Route::get('/dashboard', [DashBoardController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/profile', [ProfileController::class, 'index'])->name('admin.profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
+    Route::patch('/change-password', [ProfileController::class, 'changePassword'])->name('admin.profile.changePassword');
+
     Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.adminManagement.index');
     Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.adminManagement.create');
     Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.adminManagement.store');

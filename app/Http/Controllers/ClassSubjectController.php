@@ -201,9 +201,6 @@ class ClassSubjectController extends Controller
             return redirect()->back()->with('error', 'Có lỗi xảy ra khi cập nhật phân công môn học. Vui lòng thử lại');
         }
     }
-
-
-
     /**
      * Remove the specified resource from storage.
      */

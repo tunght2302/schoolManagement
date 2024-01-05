@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Danh sách Lớp học
+    Loại môn học
 @endsection
 @section('content')
     <div class="main-content">
@@ -16,11 +16,10 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Quản lý loại môn học</a></li>
+                                    <li class="breadcrumb-item"><a href="">Loại môn học</a></li>
                                     <li class="breadcrumb-item active">Danh sách loại môn học</li>
                                 </ol>
                             </div>
-
                         </div>
                     </div>
                 </div>
