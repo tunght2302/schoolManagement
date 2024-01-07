@@ -25,33 +25,7 @@
                 <!-- end page title -->
                 @include('notifications._message_error')
                 <div class="row mt-3">
-                    <div class="col-xxl-3">
-                        <div class="card card-bg-fill">
-                            <div class="card-body p-5">
-                                <div class="text-center">
-                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                        <img src="{{ asset('images/users/avatar-1.jpg') }}"
-                                            class="rounded-circle avatar-xl img-thumbnail user-profile-image"
-                                            alt="user-profile-image">
-                                        <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
-                                            <input id="profile-img-file-input" type="file"
-                                                class="profile-img-file-input">
-                                            <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
-                                                <span class="avatar-title rounded-circle bg-light text-body">
-                                                    <i class="ri-camera-fill"></i>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <h5 class="fs-16 mb-1">{{ Auth::user()->name }}</h5>
-                                    <p class="text-muted mb-0">Lead Designer / Developer</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end card-->
-                    </div>
-                    <!--end col-->
-                    <div class="col-xxl-9">
+                    <div class="col-xxl-8">
                         <div class="card">
                             <div class="card-header">
                                 <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
@@ -66,10 +40,38 @@
                             <div class="card-body p-4">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="personalDetails" role="tabpanel">
-                                        <form action="{{ route('admin.profile.update') }}" method="POST">
+                                        <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method('PATCH')
                                             <div class="row">
+                                                <div class="text-center">
+                                                    <div
+                                                        class="profile-user position-relative d-inline-block mx-auto  mb-4">
+                                                        <img src="{{ asset($getUser->image) }}"
+                                                            class="rounded-circle avatar-xl img-thumbnail user-profile-image"
+                                                            alt="user-profile-image">
+                                                        <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
+                                                            <input id="profile-img-file-input" type="file" name="image"
+                                                                class="profile-img-file-input">
+                                                            <label for="profile-img-file-input"
+                                                                class="profile-photo-edit avatar-xs">
+                                                                <span
+                                                                    class="avatar-title rounded-circle bg-light text-body">
+                                                                    <i class="ri-camera-fill"></i>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <h5 class="fs-16 mb-1">{{ Auth::user()->name }}</h5>
+                                                    <p class="text-muted mb-0">{{$getUser->roleName}}</p>
+                                                </div>
+                                                {{-- <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="firstnameInput" class="form-label">Ảnh</label>
+                                                        <input type="file" class="form-control" id="firstnameInput"
+                                                            name="image">
+                                                    </div>
+                                                </div> --}}
                                                 <div class="col-lg-6">
                                                     <div class="mb-3">
                                                         <label for="firstnameInput" class="form-label">Họ tên</label>
@@ -118,69 +120,69 @@
                         </div>
 
                     </div>
-                    <div class="card">
+                    <div class="card col-xxl-4">
                         <div class="card-header">
-                                <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" data-bs-toggle="tab">
-                                            <i class="far fa-user"></i> Đổi mật khẩu
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <form action="{{ route('admin.profile.changePassword') }}" method="POST">
-                                    @csrf
-                                    @method('PATCH')
-                                    <div class="row g-2">
-                                        <div class="col-lg-4">
-                                            <div>
-                                                <label for="oldpasswordInput" class="form-label">Mật khẩu
-                                                    cũ <span class="text-danger">*</span></label>
-                                                <input type="password" name="oldPassword" class="form-control"
-                                                    id="oldpasswordInput" required placeholder="Mật khẩu cũ">
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                        <div class="col-lg-4">
-                                            <div>
-                                                <label for="newpasswordInput" class="form-label">Mật khẩu
-                                                    mới<span class="text-danger">*</span></label>
-                                                <input type="password" name="newPassword" class="form-control"
-                                                    id="newpasswordInput" required placeholder="Mật khẩu mới">
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                        <div class="col-lg-4">
-                                            <div>
-                                                <label for="confirmpasswordInput" class="form-label">Xác nhận mật
-                                                    khẩu<span class="text-danger">*</span></label>
-                                                <input type="password" name="confirmPassword" class="form-control"
-                                                    id="confirmpasswordInput" required placeholder="Xác nhận mật khẩu">
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                        <div class="col-lg-12">
-                                            <div class="mb-3">
-                                                <a href="{{ route('admin.auth.forgot-password') }}"
-                                                    class="link-primary text-decoration-underline">Quên mật
-                                                    khẩu?</a>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                        <div class="col-lg-12">
-                                            <div class="text-end">
-                                                <button type="submit" class="btn btn-primary">
-                                                    Đổi mật khẩu
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                    </div>
-                                    <!--end row-->
-                                </form>
-                            </div>
+                            <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab">
+                                        <i class="far fa-user"></i> Đổi mật khẩu
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
+                        <div class="card-body">
+                            <form action="{{ route('admin.profile.changePassword') }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <div class="row g-2">
+                                    <div class="col-lg-12">
+                                        <div>
+                                            <label for="oldpasswordInput" class="form-label">Mật khẩu
+                                                cũ <span class="text-danger">*</span></label>
+                                            <input type="password" name="oldPassword" class="form-control"
+                                                id="oldpasswordInput" required placeholder="Mật khẩu cũ">
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div>
+                                            <label for="newpasswordInput" class="form-label">Mật khẩu
+                                                mới<span class="text-danger">*</span></label>
+                                            <input type="password" name="newPassword" class="form-control"
+                                                id="newpasswordInput" required placeholder="Mật khẩu mới">
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div>
+                                            <label for="confirmpasswordInput" class="form-label">Xác nhận mật
+                                                khẩu<span class="text-danger">*</span></label>
+                                            <input type="password" name="confirmPassword" class="form-control"
+                                                id="confirmpasswordInput" required placeholder="Xác nhận mật khẩu">
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <a href="{{ route('admin.auth.forgot-password') }}"
+                                                class="link-primary text-decoration-underline">Quên mật
+                                                khẩu?</a>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div class="text-end">
+                                            <button type="submit" class="btn btn-primary">
+                                                Đổi mật khẩu
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
+                            </form>
+                        </div>
+                    </div>
                     <!--end col-->
                 </div>
                 <!--end row-->

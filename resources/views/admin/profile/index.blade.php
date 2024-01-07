@@ -4,7 +4,6 @@
 @endsection
 @section('content')
     <div class="main-content">
-
         <div class="page-content">
             <div class="container-fluid card">
                 <div class="row">
@@ -12,7 +11,7 @@
                         <div class="row g-4 card-body">
                             <div class="col-auto">
                                 <div class="avatar-lg">
-                                    <img src="{{ asset('images/users/avatar-1.jpg') }}" alt="user-img"
+                                    <img src="{{ asset($getUser->image) }}" alt="user-img"
                                         class="img-thumbnail rounded-circle" />
                                 </div>
                             </div>
@@ -20,7 +19,7 @@
                             <div class="col">
                                 <div class="p-2">
                                     <h3 class="mb-1">{{ $getUser->name }}</h3>
-                                    <p class="text-muted">Owner & Founder</p>
+                                    <p class="text-muted">Chức vụ:{{$getUser->roleName}}</p>
                                 </div>
                             </div>
                             <div class="d-flex profile-wrapper">

@@ -36,7 +36,8 @@ class ProfileRequest extends FormRequest
                     ],
                     'password' => 'string|min:8',
                     'address' => 'nullable|string|max:255',
-                    'phone' => ['nullable','regex:/^(\+84|0)[0-9]{9,10}$/'], // Quy tắc kiểm tra cho số điện thoại
+                    'phone' => ['nullable','regex:/^(\+84|0)[0-9]{9,10}$/'],
+                    // 'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
                 ];
             default:
                 return [];
@@ -64,6 +65,10 @@ class ProfileRequest extends FormRequest
             'address.max' => 'Địa chỉ không được vượt quá :max ký tự.',
 
             'phone.regex' => 'Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại Việt Nam đúng định dạng.',
+
+            'image.image' => 'Vui lòng nhập ảnh đúng định dạng',
+            'image.mimes' => 'Chỉ được nhập ảnh jpeg,png,jpg,gif',
+            'image.max' => 'Kích thước ảnh vượt quá :max',
         ];
     }
 }
